@@ -3,19 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "SAP_to_BronzeZone",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"Proceso": "Logistico",
-					"SistemaFuente": "HANA",
-					"Subproceso": "Pedidos"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {

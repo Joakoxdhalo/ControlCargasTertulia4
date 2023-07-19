@@ -4,19 +4,7 @@
 		"description": "El presente Trigger ejecuta todas las tablas del área comercial que estén en formato incremental bajo el control de cargas, (CC)",
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "SAP_to_BronzeZone",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"Proceso": "Comercial",
-					"SistemaFuente": "HANA",
-					"Subproceso": "Subpr_1"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
