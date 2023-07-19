@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-eus-tertulia4-joaco-dev"
 		},
+		"LS_ADBK_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'LS_ADBK'"
+		},
 		"LS_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_ADLS'"
@@ -19,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'LS_SQL_DATA'"
 		},
+		"LS_ADBK_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0719-153544-pfwbjypj"
+		},
 		"LS_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlseustertulia4joacodev.dfs.core.windows.net/"
@@ -26,16 +34,31 @@
 		"LS_KEYVAULT_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://KV-ModernaDWH-Prod.vault.azure.net/"
-		},
-		"LS_ADBK_properties_typeProperties_existingClusterId": {
-			"type": "string",
-			"defaultValue": "0623-191725-f5jlsq0l"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_ADBK')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Servicio que nos permite conectar con Azure Databricks",
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-2976251177683621.1.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('LS_ADBK_accessToken')]"
+					},
+					"existingClusterId": "[parameters('LS_ADBK_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LS_ADLS')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -93,214 +116,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_ADLS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_ADLS",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"Ruta": {
-						"type": "string"
-					},
-					"Archivo": {
-						"type": "string"
-					},
-					"Container": {
-						"type": "string"
-					},
-					"Extension": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Parquet",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@{dataset().Archivo}.@{dataset().Extension}",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().Ruta",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().Container",
-							"type": "Expression"
-						}
-					},
-					"compressionCodec": "snappy"
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_ADLS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_SQL_CC')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SQL_CC",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "PkControlCargas",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "Proceso",
-						"type": "varchar"
-					},
-					{
-						"name": "SistemaFuente",
-						"type": "varchar"
-					},
-					{
-						"name": "PropietarioFuente",
-						"type": "varchar"
-					},
-					{
-						"name": "RutaArchivoFuente",
-						"type": "varchar"
-					},
-					{
-						"name": "NombreArchivoFuente",
-						"type": "varchar"
-					},
-					{
-						"name": "DelimitadorArchivoFuente",
-						"type": "varchar"
-					},
-					{
-						"name": "ColumnasArchivoFuente",
-						"type": "varchar"
-					},
-					{
-						"name": "FiltrosArchivoFuente",
-						"type": "varchar"
-					},
-					{
-						"name": "RutaArchivoDestino",
-						"type": "varchar"
-					},
-					{
-						"name": "NombreArchivoDestino",
-						"type": "varchar"
-					},
-					{
-						"name": "ExtencionArchivoDestino",
-						"type": "varchar"
-					},
-					{
-						"name": "DelimitadorArchivoDestino",
-						"type": "varchar"
-					},
-					{
-						"name": "IndicadorFact",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "IndicadorCargaActiva",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FechaActualizacion",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "NombreTablaStaging",
-						"type": "varchar"
-					},
-					{
-						"name": "EsquemaTablaStaging",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "conf",
-					"table": "ControlCargas"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SQL_CC')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_ADBK')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Servicio que nos permite conectar con Azure Databricks",
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-3559695151498017.17.azuredatabricks.net",
-					"accessToken": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "LS_KEYVAULT",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "DBW-Token"
-					},
-					"existingClusterId": "[parameters('LS_ADBK_properties_typeProperties_existingClusterId')]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_KEYVAULT')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_SQL_DATA')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_SQL_DATA",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"Schema": {
-						"type": "string"
-					},
-					"Tabla": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": {
-						"value": "@dataset().Schema",
-						"type": "Expression"
-					},
-					"table": {
-						"value": "@dataset().Tabla",
-						"type": "Expression"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_SQL_DATA')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Bronze_to_Silver')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -319,7 +134,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Implementacion/Estandarizaciones/MergeLoadsOrFullLoads",
+							"notebookPath": "/Users/joaquin.jimenez@idata.global/Basic Full-Delta Loads",
 							"baseParameters": {
 								"is_full_load": {
 									"value": "@pipeline().parameters.is_full_load",
@@ -651,6 +466,189 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LS_ADBK')]",
 				"[concat(variables('factoryId'), '/linkedServices/LS_SQL_CC')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_ADLS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_ADLS",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Ruta": {
+						"type": "string"
+					},
+					"Archivo": {
+						"type": "string"
+					},
+					"Container": {
+						"type": "string"
+					},
+					"Extension": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@{dataset().Archivo}.@{dataset().Extension}",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().Ruta",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().Container",
+							"type": "Expression"
+						}
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_ADLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_CC')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SQL_CC",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PkControlCargas",
+						"type": "bigint",
+						"precision": 19
+					},
+					{
+						"name": "Proceso",
+						"type": "varchar"
+					},
+					{
+						"name": "SistemaFuente",
+						"type": "varchar"
+					},
+					{
+						"name": "PropietarioFuente",
+						"type": "varchar"
+					},
+					{
+						"name": "RutaArchivoFuente",
+						"type": "varchar"
+					},
+					{
+						"name": "NombreArchivoFuente",
+						"type": "varchar"
+					},
+					{
+						"name": "DelimitadorArchivoFuente",
+						"type": "varchar"
+					},
+					{
+						"name": "ColumnasArchivoFuente",
+						"type": "varchar"
+					},
+					{
+						"name": "FiltrosArchivoFuente",
+						"type": "varchar"
+					},
+					{
+						"name": "RutaArchivoDestino",
+						"type": "varchar"
+					},
+					{
+						"name": "NombreArchivoDestino",
+						"type": "varchar"
+					},
+					{
+						"name": "ExtencionArchivoDestino",
+						"type": "varchar"
+					},
+					{
+						"name": "DelimitadorArchivoDestino",
+						"type": "varchar"
+					},
+					{
+						"name": "IndicadorFact",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "IndicadorCargaActiva",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FechaActualizacion",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "NombreTablaStaging",
+						"type": "varchar"
+					},
+					{
+						"name": "EsquemaTablaStaging",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "conf",
+					"table": "ControlCargas"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_SQL_CC')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_SQL_DATA')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_SQL_DATA",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Schema": {
+						"type": "string"
+					},
+					"Tabla": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": {
+						"value": "@dataset().Schema",
+						"type": "Expression"
+					},
+					"table": {
+						"value": "@dataset().Tabla",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_SQL_DATA')]"
 			]
 		},
 		{

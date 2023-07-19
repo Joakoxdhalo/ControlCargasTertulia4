@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "adf-eus-tertulia4-joaco-dev"
 		},
+		"LS_ADBK_accessToken": {
+			"value": ""
+		},
 		"LS_ADLS_accountKey": {
 			"value": ""
 		},
@@ -15,7 +18,7 @@
 			"value": ""
 		},
 		"LS_ADBK_properties_typeProperties_existingClusterId": {
-			"value": "0623-191725-f5jlsq0l"
+			"value": "0719-153544-pfwbjypj"
 		},
 		"LS_ADLS_properties_typeProperties_url": {
 			"value": "https://adlseustertulia4joacodev.dfs.core.windows.net/"

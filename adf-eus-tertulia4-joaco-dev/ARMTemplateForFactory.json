@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-eus-tertulia4-joaco-dev"
 		},
+		"LS_ADBK_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'LS_ADBK'"
+		},
 		"LS_ADLS_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_ADLS'"
@@ -21,7 +25,7 @@
 		},
 		"LS_ADBK_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "0623-191725-f5jlsq0l"
+			"defaultValue": "0719-153544-pfwbjypj"
 		},
 		"LS_ADLS_properties_typeProperties_url": {
 			"type": "string",
@@ -55,7 +59,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Implementacion/Estandarizaciones/MergeLoadsOrFullLoads",
+							"notebookPath": "/Users/joaquin.jimenez@idata.global/Basic Full-Delta Loads",
 							"baseParameters": {
 								"is_full_load": {
 									"value": "@pipeline().parameters.is_full_load",
@@ -1652,21 +1656,15 @@
 				"annotations": [],
 				"type": "AzureDatabricks",
 				"typeProperties": {
-					"domain": "https://adb-3559695151498017.17.azuredatabricks.net",
+					"domain": "https://adb-2976251177683621.1.azuredatabricks.net",
 					"accessToken": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "LS_KEYVAULT",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "DBW-Token"
+						"type": "SecureString",
+						"value": "[parameters('LS_ADBK_accessToken')]"
 					},
 					"existingClusterId": "[parameters('LS_ADBK_properties_typeProperties_existingClusterId')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_KEYVAULT')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/LS_ADLS')]",
