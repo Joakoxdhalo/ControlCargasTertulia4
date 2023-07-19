@@ -1,0 +1,9 @@
+{
+	"name": "adf-eus-tertulia4-joaco-dev",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7230ebc4-2d79-4596-92ff-1e0d7caf3aed",
+		"tenantId": "371ab23d-884c-40bd-b4d6-36bc3470ef62"
+	}
+}
