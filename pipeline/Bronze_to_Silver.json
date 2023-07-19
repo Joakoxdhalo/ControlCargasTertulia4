@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Implementacion/Estandarizaciones/MergeLoadsOrFullLoads",
+					"notebookPath": "/Users/joaquin.jimenez@idata.global/Basic Full-Delta Loads",
 					"baseParameters": {
 						"is_full_load": {
 							"value": "@pipeline().parameters.is_full_load",
