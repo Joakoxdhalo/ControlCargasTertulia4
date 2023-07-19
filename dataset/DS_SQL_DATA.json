@@ -1,8 +1,8 @@
 {
-	"name": "DS_SQL_DBV1",
+	"name": "DS_SQL_DATA",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "LS_SQL_DBV1",
+			"referenceName": "LS_SQL_DATA",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -26,6 +26,5 @@
 				"type": "Expression"
 			}
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }
