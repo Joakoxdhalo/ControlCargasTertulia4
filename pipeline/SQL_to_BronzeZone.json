@@ -50,7 +50,7 @@
 				"typeProperties": {
 					"variableName": "TimeNow",
 					"value": {
-						"value": "@{formatDateTime(subtractFromTime(utcNow(), 300, 'Minute'), 'yyyyMMddHHmmss')}",
+						"value": "@{formatDateTime(subtractFromTime(utcNow(), 300, 'Minute'), 'yyyy-MM-dd HH:mm:ss.fff')}",
 						"type": "Expression"
 					}
 				}
@@ -112,7 +112,7 @@
 												{
 													"type": "Query",
 													"text": {
-														"value": "UPDATE conf.ControlCargas set ValorCampoFechaCreacion = \nCASE WHEN ValorCampoFechaCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 0, 8)}'\nELSE ValorCampoFechaCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoHoraCreacion = \nCASE WHEN ValorCampoHoraCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 8, 6)}'\nELSE ValorCampoHoraCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoFechaModificacion = \nCASE WHEN ValorCampoFechaModificacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 0, 8)}'\nELSE ValorCampoFechaModificacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'",
+														"value": "UPDATE conf.ControlCargas set ValorCampoFechaCreacion = \nCASE WHEN ValorCampoFechaCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 0, 8)}'\nELSE ValorCampoFechaCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoHoraCreacion = \nCASE WHEN ValorCampoHoraCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 8, 6)}'\nELSE ValorCampoHoraCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoFechaModificacion = \nCASE WHEN ValorCampoFechaModificacion IS NOT NULL THEN '@{variables('TimeNow')}'\nELSE ValorCampoFechaModificacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'",
 														"type": "Expression"
 													}
 												}
@@ -889,7 +889,7 @@
 												{
 													"type": "Query",
 													"text": {
-														"value": "UPDATE conf.ControlCargas set ValorCampoFechaCreacion = \nCASE WHEN CampoFechaCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 0, 8)}'\nELSE ValorCampoFechaCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoHoraCreacion = \nCASE WHEN CampoHoraCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 8, 6)}'\nELSE ValorCampoHoraCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoFechaModificacion = \nCASE WHEN CampoFechaModificacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 0, 8)}'\nELSE ValorCampoFechaModificacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'",
+														"value": "UPDATE conf.ControlCargas set ValorCampoFechaCreacion = \nCASE WHEN CampoFechaCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 0, 8)}'\nELSE ValorCampoFechaCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoHoraCreacion = \nCASE WHEN CampoHoraCreacion IS NOT NULL THEN '@{substring(variables('TimeNow'), 8, 6)}'\nELSE ValorCampoHoraCreacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'\n\n\nUPDATE conf.ControlCargas set ValorCampoFechaModificacion = \nCASE WHEN CampoFechaModificacion IS NOT NULL THEN '@{variables('TimeNow')}'\nELSE ValorCampoFechaModificacion END\nWHERE PkControlCargas = '@{item().PkControlCargas}'\nAND Proceso = '@{item().Proceso}'\nAND Subproceso = '@{item().Subproceso}'\nAND SistemaFuente = '@{item().SistemaFuente}'",
 														"type": "Expression"
 													}
 												}
