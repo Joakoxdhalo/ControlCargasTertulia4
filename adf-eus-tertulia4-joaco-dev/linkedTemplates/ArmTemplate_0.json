@@ -140,8 +140,8 @@
 									"value": "@pipeline().parameters.is_full_load",
 									"type": "Expression"
 								},
-								"schema": {
-									"value": "@pipeline().parameters.schema",
+								"sistema_fuente": {
+									"value": "@pipeline().parameters.sistema_fuente",
 									"type": "Expression"
 								},
 								"table": {
@@ -447,7 +447,7 @@
 					"is_full_load": {
 						"type": "string"
 					},
-					"schema": {
+					"sistema_fuente": {
 						"type": "string"
 					},
 					"table_name": {
@@ -1050,8 +1050,8 @@
 															"value": "@{item().IndicadorCargaFull}",
 															"type": "Expression"
 														},
-														"schema": {
-															"value": "@{item().BaseDatosFuente}",
+														"sistema_fuente": {
+															"value": "@{item().SistemaFuente}",
 															"type": "Expression"
 														},
 														"table_name": {
@@ -1501,8 +1501,8 @@
 															"value": "@{item().IndicadorCargaFull}",
 															"type": "Expression"
 														},
-														"schema": {
-															"value": "@{item().BaseDatosFuente}",
+														"sistema_fuente": {
+															"value": "@{item().SistemaFuente}",
 															"type": "Expression"
 														},
 														"table_name": {
