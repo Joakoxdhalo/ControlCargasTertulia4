@@ -22,7 +22,7 @@
 							"type": "Expression"
 						},
 						"schema": {
-							"value": "@pipeline().parameters.schema",
+							"value": "@pipeline().parameters.sistema_fuente",
 							"type": "Expression"
 						},
 						"table": {
