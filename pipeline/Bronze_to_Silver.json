@@ -324,7 +324,7 @@
 			"is_full_load": {
 				"type": "string"
 			},
-			"schema": {
+			"sistema_fuente": {
 				"type": "string"
 			},
 			"table_name": {

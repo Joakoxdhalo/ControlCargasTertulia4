@@ -394,8 +394,8 @@
 													"value": "@{item().IndicadorCargaFull}",
 													"type": "Expression"
 												},
-												"schema": {
-													"value": "@{item().BaseDatosFuente}",
+												"sistema_fuente": {
+													"value": "@{item().SistemaFuente}",
 													"type": "Expression"
 												},
 												"table_name": {
@@ -845,8 +845,8 @@
 													"value": "@{item().IndicadorCargaFull}",
 													"type": "Expression"
 												},
-												"schema": {
-													"value": "@{item().BaseDatosFuente}",
+												"sistema_fuente": {
+													"value": "@{item().SistemaFuente}",
 													"type": "Expression"
 												},
 												"table_name": {
