@@ -1067,15 +1067,15 @@
 		"parameters": {
 			"Proceso": {
 				"type": "string",
-				"defaultValue": "Comercial"
+				"defaultValue": "Tertulia4"
 			},
 			"SistemaFuente": {
 				"type": "string",
-				"defaultValue": "SQL_DBV1"
+				"defaultValue": "SQL"
 			},
 			"Subproceso": {
 				"type": "string",
-				"defaultValue": "Subpr_3"
+				"defaultValue": "Subpr_2"
 			}
 		},
 		"variables": {
