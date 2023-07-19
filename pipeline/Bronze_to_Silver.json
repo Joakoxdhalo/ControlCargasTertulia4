@@ -21,7 +21,7 @@
 							"value": "@pipeline().parameters.is_full_load",
 							"type": "Expression"
 						},
-						"schema": {
+						"sistema_fuente": {
 							"value": "@pipeline().parameters.sistema_fuente",
 							"type": "Expression"
 						},
