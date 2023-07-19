@@ -7,25 +7,17 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-eus-tertulia4-joaco-dev"
 		},
-		"LS_SAP_connectionString": {
+		"LS_ADLS_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_SAP'",
-			"defaultValue": "SERVERNODE=10.3.16.13:30015;UID=SAPCONSULTA"
+			"metadata": "Secure string for 'accountKey' of 'LS_ADLS'"
 		},
 		"LS_SQL_CC_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_SQL_CC'",
-			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sqldv-modernadwh-prod.database.windows.net;Initial Catalog=SQLDB-ModernaDWH-Prod;User ID=admin_sql"
+			"metadata": "Secure string for 'connectionString' of 'LS_SQL_CC'"
 		},
-		"LS_SQL_DBV1_connectionString": {
+		"LS_SQL_DATA_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_SQL_DBV1'",
-			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=arm-nube-sql-dbv1.database.windows.net;Initial Catalog=ARM_ModernaBI;User ID=admin_moderna"
-		},
-		"LS_SQL_DWH_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'LS_SQL_DWH'",
-			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=arm-nube-sql-dwh1.database.windows.net;Initial Catalog=DWH_Comercial;User ID=admin_dwh"
+			"metadata": "Secure string for 'connectionString' of 'LS_SQL_DATA'"
 		},
 		"LS_ADBK_properties_typeProperties_existingClusterId": {
 			"type": "string",
@@ -33,47 +25,11 @@
 		},
 		"LS_ADLS_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://dlsmodernadwhprod.dfs.core.windows.net/"
+			"defaultValue": "https://adlseustertulia4joacodev.dfs.core.windows.net/"
 		},
 		"LS_KEYVAULT_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://KV-ModernaDWH-Prod.vault.azure.net/"
-		},
-		"Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_Proceso": {
-			"type": "string",
-			"defaultValue": "Comercial"
-		},
-		"Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_SistemaFuente": {
-			"type": "string",
-			"defaultValue": "HANA"
-		},
-		"Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_Subproceso": {
-			"type": "string",
-			"defaultValue": "Subpr_1"
-		},
-		"Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_Proceso": {
-			"type": "string",
-			"defaultValue": "Logistico"
-		},
-		"Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_SistemaFuente": {
-			"type": "string",
-			"defaultValue": "HANA"
-		},
-		"Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_Subproceso": {
-			"type": "string",
-			"defaultValue": "Pedidos"
-		},
-		"Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_Proceso": {
-			"type": "string",
-			"defaultValue": "Comercial"
-		},
-		"Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_SistemaFuente": {
-			"type": "string",
-			"defaultValue": "SQL_DBV1"
-		},
-		"Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_Subproceso": {
-			"type": "string",
-			"defaultValue": "Subpr_3"
 		},
 		"containerUri": {
 			"type": "string",
@@ -102,53 +58,23 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"LS_SAP_connectionString": {
-						"value": "[parameters('LS_SAP_connectionString')]"
+					"LS_ADLS_accountKey": {
+						"value": "[parameters('LS_ADLS_accountKey')]"
 					},
 					"LS_SQL_CC_connectionString": {
 						"value": "[parameters('LS_SQL_CC_connectionString')]"
 					},
-					"LS_SQL_DBV1_connectionString": {
-						"value": "[parameters('LS_SQL_DBV1_connectionString')]"
+					"LS_SQL_DATA_connectionString": {
+						"value": "[parameters('LS_SQL_DATA_connectionString')]"
 					},
-					"LS_SQL_DWH_connectionString": {
-						"value": "[parameters('LS_SQL_DWH_connectionString')]"
+					"LS_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_properties_typeProperties_url')]"
 					},
 					"LS_KEYVAULT_properties_typeProperties_baseUrl": {
 						"value": "[parameters('LS_KEYVAULT_properties_typeProperties_baseUrl')]"
 					},
 					"LS_ADBK_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('LS_ADBK_properties_typeProperties_existingClusterId')]"
-					},
-					"LS_ADLS_properties_typeProperties_url": {
-						"value": "[parameters('LS_ADLS_properties_typeProperties_url')]"
-					},
-					"Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_Proceso": {
-						"value": "[parameters('Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_Proceso')]"
-					},
-					"Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_SistemaFuente": {
-						"value": "[parameters('Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_SistemaFuente')]"
-					},
-					"Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_Subproceso": {
-						"value": "[parameters('Trigger_Diario_Deltas_SAP_Comercial_properties_SAP_to_BronzeZone_parameters_Subproceso')]"
-					},
-					"Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_Proceso": {
-						"value": "[parameters('Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_Proceso')]"
-					},
-					"Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_SistemaFuente": {
-						"value": "[parameters('Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_SistemaFuente')]"
-					},
-					"Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_Subproceso": {
-						"value": "[parameters('Trigger_Diario_Deltas_SAP_Logistico_properties_SAP_to_BronzeZone_parameters_Subproceso')]"
-					},
-					"Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_Proceso": {
-						"value": "[parameters('Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_Proceso')]"
-					},
-					"Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_SistemaFuente": {
-						"value": "[parameters('Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_SistemaFuente')]"
-					},
-					"Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_Subproceso": {
-						"value": "[parameters('Trigger_Diario_Deltas_SQL_Comercial_properties_SQL_to_BronzeZone_parameters_Subproceso')]"
 					}
 				}
 			},
