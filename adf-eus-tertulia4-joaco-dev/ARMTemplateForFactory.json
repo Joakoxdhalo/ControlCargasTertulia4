@@ -30,10 +30,6 @@
 		"LS_ADLS_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlseustertulia4joacodev.dfs.core.windows.net/"
-		},
-		"LS_KEYVAULT_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://KV-ModernaDWH-Prod.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -534,7 +530,7 @@
 													"source": {
 														"type": "AzureSqlSource",
 														"sqlReaderQuery": {
-															"value": "SELECT @{item().ColumnasArchivoFuente}\nFROM\n@{item().EsquemaFuente}.@{item().ArchivoFuente}\n@{\nreplace(\n        replace(\n            replace(\n                        item().FiltrosArchivoFuenteParsed, '{variableDF1}', substring(variables('TimeNow'), 0, 8)\n            ), '{variableDF2}', substring(variables('TimeNow'), 8, 6)\n        ), '{variableDF3}', substring(variables('TimeNow'), 0, 8)\n)\n}",
+															"value": "SELECT @{item().ColumnasArchivoFuente}\nFROM\n@{item().EsquemaFuente}.@{item().ArchivoFuente}\n@{\nreplace(\n        replace(\n            replace(\n                        item().FiltrosArchivoFuenteParsed, '{variableDF1}', variables('TimeNow')\n            ), '{variableDF2}', variables('TimeNow')\n        ), '{variableDF3}', variables('TimeNow')\n)\n}",
 															"type": "Expression"
 														},
 														"queryTimeout": "02:00:00",
@@ -1679,19 +1675,6 @@
 						"type": "SecureString",
 						"value": "[parameters('LS_ADLS_accountKey')]"
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_KEYVAULT')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('LS_KEYVAULT_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []

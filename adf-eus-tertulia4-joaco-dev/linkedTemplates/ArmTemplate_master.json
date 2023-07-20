@@ -31,10 +31,6 @@
 			"type": "string",
 			"defaultValue": "https://adlseustertulia4joacodev.dfs.core.windows.net/"
 		},
-		"LS_KEYVAULT_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://KV-ModernaDWH-Prod.vault.azure.net/"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -79,9 +75,6 @@
 					},
 					"LS_ADLS_properties_typeProperties_url": {
 						"value": "[parameters('LS_ADLS_properties_typeProperties_url')]"
-					},
-					"LS_KEYVAULT_properties_typeProperties_baseUrl": {
-						"value": "[parameters('LS_KEYVAULT_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},

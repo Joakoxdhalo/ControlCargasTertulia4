@@ -23,9 +23,6 @@
 		"LS_ADLS_properties_typeProperties_url": {
 			"value": "https://adlseustertulia4joacodev.dfs.core.windows.net/"
 		},
-		"LS_KEYVAULT_properties_typeProperties_baseUrl": {
-			"value": "https://KV-ModernaDWH-Prod.vault.azure.net/"
-		},
 		"containerUri": {
 			"value": ""
 		},
